@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1D4F7B51-83D3-476F-8B8F-8BC24CA45361</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Hello World</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F12ADC25-FCF4-4ACE-9F1D-BEDC9F2C0147</key>
+		<string>ssh://github.com/syogesh/localandfriends.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>platforms/ios/Hello World.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F12ADC25-FCF4-4ACE-9F1D-BEDC9F2C0147</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/syogesh/localandfriends.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F12ADC25-FCF4-4ACE-9F1D-BEDC9F2C0147</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F12ADC25-FCF4-4ACE-9F1D-BEDC9F2C0147</string>
+			<key>IDESourceControlWCCName</key>
+			<string>localandfriends</string>
+		</dict>
+	</array>
+</dict>
+</plist>
