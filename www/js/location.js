@@ -19,10 +19,26 @@ var onSuccess = function(position) {
 //Grab the note details, no real validation for now
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
+    var mobile = "Unknown OS";
+    var OSName = "Unknown OS";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
 
+    if (navigator.userAgent.indexOf("Mozilla")!=-1) mobile="Mozilla";
+    if (navigator.userAgent.indexOf("Safari")!=-1) mobile="Safari";
+    if (navigator.userAgent.indexOf("Explorer")!=-1) mobile="Explorer";
+    if (navigator.userAgent.indexOf("Chrome")!=-1) mobile="Chrome";
+    if (navigator.userAgent.indexOf("iPad")!=-1) mobile="iPad";
+    if (navigator.userAgent.indexOf("iPhone")!=-1) mobile="iPhone";
+    if (navigator.userAgent.indexOf("iPod")!=-1) mobile="iPod";
+    if (navigator.userAgent.indexOf("Android")!=-1) mobile="Android";
+    if (navigator.userAgent.indexOf("webOS")!=-1) mobile="webOS";
     var note = new LocationObject();
-    note.save({latitude:latitude, longitude:longitude}, {
+    note.save({OSName:OSName, mobile:mobile, latitude:latitude, longitude:longitude}, {
       success:function(object) {
+        console.log("mobile = " + mobile);
         console.log("Saved the object!");
       }, 
       error:function(object,error) {
