@@ -24,6 +24,7 @@ var onSuccess = function(position) {
 
     var mobile = "Unknown OS";
     var OSName = "Unknown OS";
+    var username = Parse.getUsername;
     if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
     if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
     if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
@@ -41,7 +42,7 @@ var onSuccess = function(position) {
 
     /*
     var note = new LocationObject();
-    note.save({OSName:OSName, mobile:mobile, latitude:latitude, longitude:longitude}, {
+    note.save({OSName:OSName, mobile:mobile, latitude:latitude, longitude:longitude, username:username}, {
       success:function(object) {
         console.log("mobile = " + mobile);
         console.log("Saved the object!");

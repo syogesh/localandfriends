@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script type="text/javascript" src="../js/parse.min.js"></script>
+<script>
+function validateForm() {
+    var PARSE_APP = "3I2hDxytg8b7LF5DcCinCG4capoEk8AV3ZqeUdn5";
+    var PARSE_JS = "C6p0uiovPgsGlwjdLbWh04xLwJrln4wmdpilij6n";
+    Parse.initialize(PARSE_APP, PARSE_JS);
+    LocationObject = Parse.Object.extend("LocationObject");
+
+    var v = document.forms["myForm"]["username"].value;
+    var x = document.forms["myForm"]["email"].value;
+    var y = document.forms["myForm"]["password"].value;
+    var z = document.forms["myForm"]["password1"].value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+        alert("Not a valid e-mail address");
+        return false;
+    }
+    if (y != z) {
+        alert("Passwords are not the same");
+        return false;
+    }
+    var user = new Parse.User();
+    //user.set("username", "v");
+    user.set("email", "x");
+    user.set("password", "y");
+     
+    // other fields can be set just like with Parse.Object
+    user.signUp(x, y, null, null);
+    alert("test");
+/*    user.signUp(null, {
+      success: function(user) {
+        console.log("Worked");
+        alert("What");
+      },
+      error: function(user, error) {
+        // Show the error message somewhere and let the user try again.
+        alert("Error: " + error.code + " " + error.message);
+      }
+    });*/
+}
+</script>
+</head>
+
+<body>
+<form name="myForm" action="../index.html" onsubmit="return validateForm();" method="post">
+Username: <input type="text" name="username"><br>
+Email: <input type="text" name="email"><br>
+Password: <input type="password" name="password"><br>
+Repeat Password: <input type="password" name="password1"><br>
+<a href="login.html">Login here!</a><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+
+</html>

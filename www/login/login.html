@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var PARSE_APP = "3I2hDxytg8b7LF5DcCinCG4capoEk8AV3ZqeUdn5";
+var PARSE_JS = "C6p0uiovPgsGlwjdLbWh04xLwJrln4wmdpilij6n";
+Parse.initialize(PARSE_APP, PARSE_JS);
+LocationObject = Parse.Object.extend("LocationObject");
+function validateForm() {
+    var x = document.forms["myForm"]["email"].value;
+    var x = document.forms["myForm"]["password"].value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+        alert("Not a valid e-mail address");
+        return false;
+    }
+	Parse.User.logIn(x, y, {
+	  success: function(user) {
+	    // Do stuff after successful login.
+	  },
+	  error: function(user, error) {
+	    // The login failed. Check error to see why.
+	  }
+	});
+}
+</script>
+</head>
+
+<body>
+<form name="myForm" action="../index.html" onsubmit="return validateForm();" method="post">
+Email: <input type="text" name="email"><br>
+Password: <input type="password" name="password"><br>
+<a href="login.html">Register Here!</a> 
+<input type="submit" value="Submit">
+</form>
+</body>
+
+</html>
