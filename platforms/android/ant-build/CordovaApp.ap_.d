@@ -32,12 +32,16 @@
 /Users/yogesh/localandfriends/platforms/android/assets/www/img \
 /Users/yogesh/localandfriends/platforms/android/assets/www/index.html \
 /Users/yogesh/localandfriends/platforms/android/assets/www/js \
+/Users/yogesh/localandfriends/platforms/android/assets/www/parse \
+/Users/yogesh/localandfriends/platforms/android/assets/www/plugins \
 /Users/yogesh/localandfriends/platforms/android/assets/www/res \
 /Users/yogesh/localandfriends/platforms/android/assets/www/spec \
 /Users/yogesh/localandfriends/platforms/android/assets/www/spec.html \
 /Users/yogesh/localandfriends/platforms/android/assets/www/css/index.css \
 /Users/yogesh/localandfriends/platforms/android/assets/www/img/logo.png \
 /Users/yogesh/localandfriends/platforms/android/assets/www/js/index.js \
+/Users/yogesh/localandfriends/platforms/android/assets/www/js/location.js \
+/Users/yogesh/localandfriends/platforms/android/assets/www/parse/parse.js \
 /Users/yogesh/localandfriends/platforms/android/assets/www/res/icon \
 /Users/yogesh/localandfriends/platforms/android/assets/www/res/screen \
 /Users/yogesh/localandfriends/platforms/android/assets/www/res/icon/android \

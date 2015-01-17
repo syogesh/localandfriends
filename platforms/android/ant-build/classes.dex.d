@@ -6,4 +6,5 @@
 /Users/yogesh/localandfriends/platforms/android/ant-build/classes/com/phonegap/helloworld/R$string.class \
 /Users/yogesh/localandfriends/platforms/android/ant-build/classes/com/phonegap/helloworld/R$xml.class \
 /Users/yogesh/localandfriends/platforms/android/ant-build/classes/com/phonegap/helloworld/R.class \
+/Users/yogesh/localandfriends/platforms/android/ant-build/classes/com/phonegap/localandfriends/CordovaApp.class \
 /Users/yogesh/localandfriends/platforms/android/ant-build/dexedLibs/classes-50e94c16d649569538d82c268b69281e.jar \
