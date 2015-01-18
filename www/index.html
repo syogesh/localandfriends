@@ -1,55 +1,185 @@
-<!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+<!doctype html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <div id="something" style="height: 100px; width: 300px; margin: 0 auto; background: red;">
-            Hello world
-        </div>
-        <div>
-        <a href="test.html">View Map</a>    
-        </div>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bY7bjJQ8TRK7OTDu9ZLU2yOH9EW7uf0"
-        type="text/javascript"></script>
+        <title>Let's Hang</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="bower_components/core-menu/core-menu.html">
+        <link rel="import" href="bower_components/core-item/core-item.html">
+       <!--  <link rel="import" href="bower_components/paper-toast/paper-toast.html">
+        <link rel="import" href="bower_components/paper-fab/paper-fab.html"> -->
+        <!-- <link rel="import" href="bower_components/core-header-panel/core-header-panel.html"> -->
+        <link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
+
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+        <!-- <script type="text/javascript" src="cordova.js"></script>  -->
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/parse.min.js"></script>
-        <script type="text/javascript" src="js/location.js"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
+        <style>
+            body {
+              font-family: 'Roboto 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+              margin: 0;
+              background: #f1f1f1;
+            }
+
+            .green {
+              position: absolute;
+              top: 0;
+              right: 0;
+              left: 0;
+              height: 350px;
+              background: #70c26f;
+            }
+          </style>
+    </head>
+    <body unresolved>
+        <polymer-element name="music-demo">
+          <template>
+
+            <style>
+              .chip-container {
+                position: absolute;
+                top: 275px;
+                right: 0;
+                left: 0;
+                text-align: center;
+              }
+
+              .chip {
+                display: inline-block;
+                position: relative;
+                border-radius: 3px;
+                margin: 4px;
+                overflow: hidden;
+                text-align: start;
+                background-color: #fff;
+                box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+              }
+
+              .chip-top {
+                width: 200px;
+                height: 200px;
+              }
+
+              .chip-bottom {
+                padding: 8px;
+                line-height: 1.5;
+              }
+
+              .chip-album-title {
+                font-weight: bold;
+              }
+
+              #details {
+                padding: 200px 10% 0;
+              }
+
+              .card {
+                height: 400px;
+                border-radius: 3px;
+                text-align: start;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              }
+
+              .card-left {
+                width: 400px;
+              }
+
+/*              .card-right {
+                padding: 24px;
+              }*/
+
+              .card-icon {
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                margin-right: 16px;
+              }
+
+              .card-album-title {
+                font-size: 2em;
+              }
+            </style>
+
+            <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
+
+              <section>
+
+                <div class="chip-container" hero-p on-tap="{{transition}}">
+
+                  <template repeat="{{items as item}}">
+
+                    <div class="chip" hero-id="{{item.artist}}-{{item.album}}" hero?="{{selectedAlbum === item }}">
+                      <div class="chip-top" style="background:{{item.color}};" hero-id="{{item.artist}}-{{item.album}}-art" hero?="{{selectedAlbum === item}}"></div>
+                      <div class="chip-bottom">
+                        <div class="chip-album-title">{{item.album}}</div>
+                        <div class="chip-artist">{{item.artist}}</div>
+                      </div>
+                    </div>
+
+                  </template>
+
+                </div>
+              </section>
+
+              <section id="details">
+
+                <div class="card" layout horizontal hero-id="{{selectedAlbum.artist}}-{{selectedAlbum.album}}" hero on-tap="{{transition}}">
+                  <div class="card-left" style="background:{{selectedAlbum.color}};" hero-id="{{selectedAlbum.artist}}-{{selectedAlbum.album}}-art" hero></div>
+                  
+                </div>
+
+              </section>
+
+            </core-animated-pages>
+
+          </template>
+          <script>
+
+            Polymer('music-demo', {
+
+              page: 0,
+
+              items: [
+                { artist: 'Tycho', album: 'Fragments', color: '#f4db33' },
+                { artist: 'Tycho', album: 'Past Prologue', color: '#972ff8' },
+                { artist: 'Tycho', album: 'Spectre', color: '#7dd6fe' },
+                { artist: 'Tycho', album: 'Awake', color: '#dc3c84' }
+              ],
+
+              selectedAlbum: null,
+
+              transition: function(e) {
+                if (this.page === 0 && e.target.templateInstance.model.item) {
+                  this.selectedAlbum = e.target.templateInstance.model.item;
+                  this.page = 1;
+                } else {
+                  this.page = 0;
+                }
+              }
+            });
+
+          </script>
+          </polymer-element>
+
+          <div class="green" style="font-family: 'Lobster', cursive; font-size:3.5em;">
+            <div style="height: 100px; width: 25%; margin: 0 auto;padding-top: 10%; ">
+              Let's Hang
+            </div>
+          </div>
+
+          <music-demo></music-demo>
+        <!-- <paper-fab icon="add" onclick="document.querySelector('#toast1').show()"></paper-fab> -->
     </body>
 </html>
