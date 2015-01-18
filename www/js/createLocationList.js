@@ -17,8 +17,6 @@ function onSuccess(position) {
     //Grab the note details, no real validation for now
     myLat = position.coords.latitude;
     myLong = position.coords.longitude;
-    console.log(myLat);
-    console.log(myLong);
 
     var mobile = "Unknown OS";
     var OSName = "Unknown OS";
@@ -50,12 +48,8 @@ function onSuccess(position) {
       }
     });
     */
-  getUsers();
-  console.log(allUsers);
   getClosestUsers();
   initialize(position);
-
-
 };
 // onError Callback receives a PositionError object
 //
@@ -67,8 +61,10 @@ function onError(error) {
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 function initialize(position) {
-  var latitude = (position.coords.latitude + allUsers[0].get('latitude'))/2;
-  var longitude = (position.coords.longitude + allUsers[0].get('longitude'))/2;
+  alert("test");
+  //alert(allUsers[0].id + ' - ' + allUsers[0].get('name'));
+  var latitude = (position.coords.latitude + closestFriends[0].get('latitude'))/2;
+  var longitude = (position.coords.longitude + closestFriends[0].get('longitude'))/2;
   var location = new google.maps.LatLng(latitude, longitude);
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: location,
@@ -136,33 +132,15 @@ function createMarkers(places) {
   map.fitBounds(bounds);
 }
 
-function getUsers() {
-    var User = Parse.Object.extend("Friend");
-
-    var query = new Parse.Query(User);
-    query.equalTo("city", "Ann Arbor");
-    query.find({
-        success: function(results) {
-        allUsers = results;
-        for (var i = 0; i < results.length; ++i) {
-            var object = results[i];
-            //alert(object.id + ' - ' + object.get('name'));
-        }
-        }, error: function(error) {
-            alert('Error: ' + error.code + ' ' + error.message);
-        }
-    });
-}
-
 function getClosestUsers() {
     Parse.Cloud.run('closestFriends', { latitude: myLat, longitude: myLong}, {
     success: function(response) {
       console.log("success");
-      closestFriends = response;
       //console.log(response[0].get('name'));
       for(var i = 0; i < response.length; i++){
         console.log(response[i].get("name"));
       }
+      closestFriends = response;
     },
     error: function(error) {
       console.log(error.message);
