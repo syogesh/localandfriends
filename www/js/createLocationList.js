@@ -2,7 +2,7 @@ var PARSE_APP = "3I2hDxytg8b7LF5DcCinCG4capoEk8AV3ZqeUdn5";
 var PARSE_JS = "C6p0uiovPgsGlwjdLbWh04xLwJrln4wmdpilij6n";
 Parse.initialize(PARSE_APP, PARSE_JS);
 
-var myLat, myLong, allUsers, map, placesList;
+var myLat, myLong, allUsers, map, placesList, closestFriends;
 
 function onSuccess(position) {
     alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -51,20 +51,10 @@ function onSuccess(position) {
     });
     */
   getUsers();
+  getClosestUsers();
   initialize(position);
 
-  Parse.Cloud.run('closestFriends', { latitude: myLat, longitude: myLong}, {
-  success: function(response) {
-    console.log("success");
-    //console.log(response[0].get('name'));
-    for(var i = 0; i < response.length; i++){
-      console.log(response[i].get("name"));
-    }
-  },
-  error: function(error) {
-    console.log(error.message);
-  }
-});
+
 };
 // onError Callback receives a PositionError object
 //
@@ -76,8 +66,6 @@ function onError(error) {
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 function initialize(position) {
-  alert("test");
-  alert(allUsers[0].id + ' - ' + allUsers[0].get('name'));
   var latitude = (position.coords.latitude + allUsers[0].get('latitude'))/2;
   var longitude = (position.coords.longitude + allUsers[0].get('longitude'))/2;
   var location = new google.maps.LatLng(latitude, longitude);
@@ -165,3 +153,18 @@ function getUsers() {
     });
 }
 
+function getClosestUsers() {
+    Parse.Cloud.run('closestFriends', { latitude: myLat, longitude: myLong}, {
+    success: function(response) {
+      console.log("success");
+      closestFriends = response;
+      //console.log(response[0].get('name'));
+      for(var i = 0; i < response.length; i++){
+        console.log(response[i].get("name"));
+      }
+    },
+    error: function(error) {
+      console.log(error.message);
+    }
+  });
+}
