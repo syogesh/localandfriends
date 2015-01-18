@@ -18,6 +18,7 @@ Parse.Cloud.define("closestFriends", function(request, response) {
 				return distance(a.get("latitude"), a.get("longitude")) - 
 					distance(b.get("latitude"), b.get("longitude"));
 			});
+			results.length = 5;
 			response.success(results);
 		},
 		error: function(error) {

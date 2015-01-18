@@ -51,6 +51,7 @@ function onSuccess(position) {
     });
     */
   getUsers();
+  console.log(allUsers);
   getClosestUsers();
   initialize(position);
 
