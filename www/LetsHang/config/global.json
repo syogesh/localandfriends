@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Let's Hang": {
+            "applicationId": "3I2hDxytg8b7LF5DcCinCG4capoEk8AV3ZqeUdn5", 
+            "masterKey": "VuplusV2nfbi7HbugSZozdVh66W9Vgql4vkSMoPP"
+        }, 
+        "_default": {
+            "link": "Let's Hang"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.3"
+    }
+}
