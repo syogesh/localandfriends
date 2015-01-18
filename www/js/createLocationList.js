@@ -5,14 +5,14 @@ Parse.initialize(PARSE_APP, PARSE_JS);
 var myLat, myLong, allUsers, map, placesList, closestFriends;
 
 function onSuccess(position) {
-    alert('Latitude: '          + position.coords.latitude          + '\n' +
+/*    alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
           'Accuracy: '          + position.coords.accuracy          + '\n' +
           'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
           'Heading: '           + position.coords.heading           + '\n' +
           'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
+          'Timestamp: '         + position.timestamp                + '\n');*/
 
     //Grab the note details, no real validation for now
     myLat = position.coords.latitude;
@@ -48,8 +48,7 @@ function onSuccess(position) {
       }
     });
     */
-  getClosestUsers();
-  initialize(position);
+  getClosestUsers(position);
 };
 // onError Callback receives a PositionError object
 //
@@ -61,7 +60,6 @@ function onError(error) {
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 function initialize(position) {
-  alert("test");
   //alert(allUsers[0].id + ' - ' + allUsers[0].get('name'));
   var latitude = (position.coords.latitude + closestFriends[0].get('latitude'))/2;
   var longitude = (position.coords.longitude + closestFriends[0].get('longitude'))/2;
@@ -132,15 +130,14 @@ function createMarkers(places) {
   map.fitBounds(bounds);
 }
 
-function getClosestUsers() {
+function getClosestUsers(position) {
     Parse.Cloud.run('closestFriends', { latitude: myLat, longitude: myLong}, {
     success: function(response) {
-      console.log("success");
-      //console.log(response[0].get('name'));
       for(var i = 0; i < response.length; i++){
         console.log(response[i].get("name"));
       }
       closestFriends = response;
+      initialize(position);
     },
     error: function(error) {
       console.log(error.message);
