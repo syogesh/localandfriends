@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript" src="../js/parse.min.js"></script>
+        <script>
+        var PARSE_APP = "3I2hDxytg8b7LF5DcCinCG4capoEk8AV3ZqeUdn5";
+        var PARSE_JS = "C6p0uiovPgsGlwjdLbWh04xLwJrln4wmdpilij6n";
+        Parse.initialize(PARSE_APP, PARSE_JS);
+
+        function validateForm() {
+            User = Parse.Object.extend("User");
+
+            var x = document.forms["myForm"]["email"].value;
+            var y = document.forms["myForm"]["password"].value;
+            /*
+            var atpos = x.indexOf("@");
+            var dotpos = x.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                alert("Not a valid e-mail address");
+                return false;
+            }
+            */
+            Parse.User.logIn(x, y, {
+              success: function(user) {
+                console.log("login in successful");
+                //window.location.pathname = "../index.html";
+                // Do stuff after successful login.
+              },
+              error: function(user, error) {
+                // The login failed. Check error to see why.
+                alert("Error: " + error.code + " " + error.message);
+              }
+            });
+        }
+        </script>
+    </head>
+
+    <body>
+        <form name="myForm" action="../index.html" method="post">
+            Email: <input type="text" name="email" value="test"><br>
+            Password: <input type="password" name="password" value="test"><br>
+            <a href="login.html">Register Here!</a>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+
+</html>
